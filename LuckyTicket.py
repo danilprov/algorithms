@@ -21,23 +21,35 @@ def count_lucky_tickets6():
     return count
 
 
+def sum_of_digits(number):
+    sum_of_digits_val = 0
+    while number > 0:
+        sum_of_digits_val += number % 10
+        number //= 10
+    return sum_of_digits_val
+
+
 class LuckyTickets(ITask):
     def __init__(self):
         self.count = 0
+        self.count_combinations = 0
 
     def run(self, input_data):
         n = int(input_data[0])
         self.count = 0
-        self.getluckycountrec(n, 0, 0)
+        self.getluckyfast(n)
+        # self.getluckycountrec(n, 0, 0)
         return str(self.count)
 
     def run_old(self, n):
         self.count = 0
-        #self.getluckycountrec(n, 0, 0)
-        self.getluckycountloop(n)
+        self.getluckyfast(n)
+        # self.getluckycountrec(n, 0, 0)
+        # self.getluckycountloop(n)
         return self.count
 
     def getluckycountloop(self, n):
+        # brute force solution
         for i in range(10**(2*n)):
             sumA = 0
             sumB = 0
@@ -49,6 +61,7 @@ class LuckyTickets(ITask):
                 self.count += 1
 
     def getluckycountrec(self, n, sumA, sumB):
+        # recursive solution
         if n == 0:
             if sumA == sumB:
                 self.count += 1
@@ -56,12 +69,14 @@ class LuckyTickets(ITask):
 
         for a in range(10):
             for b in range(10):
-                self.getluckycountrec(n-1, sumA+a, sumB+b)
+                self.getluckycountrec(n - 1, sumA + a, sumB + b)
 
-    def getluckyfast(self):
+    def getluckyfast(self, n):
         """
+        analytical or analytical/numerical solution
+
         (ab) (xy)
-        a+b  #   possibilities
+        a+b  #   combinations
         0    1   00
         1    2   01 10
         2    3   02 11 20
@@ -70,7 +85,7 @@ class LuckyTickets(ITask):
         ...
         18
 
-        x+y  #   possibilities
+        x+y  #   combinations
         0    1   00
         1    2   01 10
         2    3   02 11 20
@@ -79,18 +94,64 @@ class LuckyTickets(ITask):
         ...
         18
 
-        if a+b = 3 then # tickets s.t. a+b == x+y - 16
+        if a+b = 3 then # tickets s.t. a+b == x+y is 16
         0303 0312 0321 0330
         1203 1212 1221 1230
         2103 2112 2121 2130
         3003 3012 3021 3030
+
+        for each possible sum: 0 ... 9 * n,
+        we can find the number of combinations smart way
+        but also using brute force (by checking all possible combinations)
+
         :return:
         """
-        pass
+        for i in range(9 * n + 1):
+            # compute number of combinations: brute force
+            count_comb = 0
+            for j in range(10**n):
+                if sum_of_digits(j) == i:
+                    count_comb += 1
+            self.count += self.count_combinations * self.count_combinations
+
+            # compute number of combinations: smart way
+            # self.count_combinations = 0
+            # self.count_combinations_apply(n, i)
+            #
+            # self.count += self.count_combinations * self.count_combinations
+
+    def count_combinations_apply(self, n, sum):
+        if n == 1:
+            if sum > -1:
+                self.count_combinations += 1
+            return
+
+        for j in range(10):
+            self.count_combinations_apply(n - 1, sum - j)
+
+
+class CountCombinations:
+    def __init__(self):
+        self.count = 0
+
+    def count_combinations(self, n, sum):
+        if n == 1:
+            if sum > -1:
+                self.count += 1
+            return
+
+        for j in range(10):
+            self.count_combinations(n - 1, sum - j)
 
 
 if __name__ == '__main__':
+    n = 1
+    for i in range(1, n + 1):
+        cc = CountCombinations()
+        cc.count_combinations(n, i)
+        print(cc.count)
+
     lucky_tickets = LuckyTickets()
-    for n in range(1, 5):
-        res = lucky_tickets.run(n)
+    for n in range(1, 6):
+        res = lucky_tickets.run_old(n)
         print(f'n: {n}, # lucky tickets: {res}')

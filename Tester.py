@@ -13,7 +13,8 @@ class Tester():
             outFile = f'{self.path}test.{nr}.out'
 
             if os.path.isfile(inFile) and os.path.isfile(outFile):
-                print(f'Test #{nr} : ' + str(self.run_test(inFile, outFile)))
+                print(f'Test #{nr} :')
+                print(f'Test result: {self.run_test(inFile, outFile)}')
                 nr += 1
                 continue
             break
@@ -23,6 +24,7 @@ class Tester():
             input_data = input_file.read().strip()
             expect = output_file.read().strip()
         actual = self.task.run(input_data)
+        print(f'n: {input_data}, # lucky tickets: {actual}')
         return expect == actual
 
 
