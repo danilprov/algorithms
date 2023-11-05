@@ -26,13 +26,3 @@ class Tester():
         actual = self.task.run(input_data)
         print(f'n: {input_data}, # lucky tickets: {actual}')
         return expect == actual
-
-
-if __name__ == '__main__':
-    from LuckyTicket import LuckyTickets
-
-    path = 'source/1.Tickets/'
-    task = LuckyTickets()
-
-    tst = Tester(task, path)
-    tst.run_tests()

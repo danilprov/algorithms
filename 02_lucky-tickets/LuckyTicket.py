@@ -37,8 +37,8 @@ class LuckyTickets(ITask):
     def run(self, input_data):
         n = int(input_data[0])
         self.count = 0
-        self.getluckyfast(n)
-        # self.getluckycountrec(n, 0, 0)
+        #self.getluckyfast(n)
+        self.getluckycountrec(n, 0, 0)
         return str(self.count)
 
     def run_old(self, n):
