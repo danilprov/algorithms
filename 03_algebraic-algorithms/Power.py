@@ -9,7 +9,6 @@ class PowerCalculator():
 
         return result
 
-
     def power_lnn(self, a, n):
         d = a
         p = 1
@@ -34,9 +33,3 @@ class PowerCalculator():
                 p = p.multiply(d)
 
         return p.get_element(0, 0)
-
-
-
-
-
-

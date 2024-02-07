@@ -1,0 +1,29 @@
+O - time complexity
+M - space
+>< - # comparisons (cmp)
+<=> - # of assignments (or element swaps) (asg)
+St - Stability (equal elements preserve their initial order)
+Ad - Adaptivity (presorted array takes less time to be sorted)
+On - Online (if array can be presented as a stream of data and be sorted in online fashion)
+
+   Alg           |    O    |    M    |     ><      |    <=>       |   St   |   Ad   |   On   |
+ -------------------------------------------------------------------------------------------------
+  Bubble         |  O(N^2) |   O(1)  |  (N^2-N)/2  | <=3(N^2-N)/2 |   +    |   -    |   -    |
+ Insertion       |  O(N^2) |   O(1)  | <=(N^2-N)/2 | <=3(N^2-N)/2 |   +    |   +    |   +    |
+ InsertionBinary |  O(N^2) |   O(1)  | <=NlogN     | <=(N^2+3N)/2 |   +    |   +    |   +    |
+ Shell           |~O(N^1.5)|   O(1)  |     -       |      -       |   -    |   -(+) |   -    |
+ Selection       |  O(N^2) |   O(1)  |  (N^2-N)/2  |      N       |   -    |   -    |   -    |
+ Heap            | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
+ QuickSort       | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
+ MergeSort       | O(NlogN)|O(N+logN)|     -       |      -       |   +    |   -    |   -(+) |
+
+
+      |      Bubble                    |      Insertion                 |     InsertionShift             |     InsertionBinarySearch      |     Shell                      |     Selection                     |     Heap                          |
+N     |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000   |   10000    |   100000   |  1000   |   10000    |   100000   |
+cmp   | 499500 | 49995000 | 4999950000 | 260646 | 25071844 | 2506864971 | 260646 | 25071844 | 2506864971 |  7760  |  110540  |   1410356  |  14875 |  256123  |   4429601  |  500499 |  50004999  | 5000049999 |  19266  |  258452    |   3250012  |
+asg   | 778968 | 75185565 |   ~7.5B    | 778968 | 75185565 |   ~7.5B    | 261654 | 25081853 | 2506964984 | 261654 | 25081853 | 2506964984 |  22218 |  423639  |   8940366  |  2997   |   29997    |   299997   |  27399  |  372678    |   4725018  |
+time  |  354ms |  38698ms |    ---     |  273ms |  31446ms |    ---     |  195ms |  19015ms |    ---     |   63ms |  5998ms  |    ---     |   11ms |   210ms  |   3113ms   |  225ms  |   11573ms  |   ---      |  10ms   |   151ms    |   1763ms   |
+
+
+--- - timeout (more than 3 mins)
+

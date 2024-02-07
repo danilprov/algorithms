@@ -1,4 +1,4 @@
-from Task import ITask
+from ITask import ITask
 
 
 # warm up: naive solution that works only for n=6
