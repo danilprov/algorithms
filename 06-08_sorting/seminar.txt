@@ -8,14 +8,14 @@ On - Online (if array can be presented as a stream of data and be sorted in onli
 
    Alg           |    O    |    M    |     ><      |    <=>       |   St   |   Ad   |   On   |
  -------------------------------------------------------------------------------------------------
-  Bubble         |  O(N^2) |   O(1)  |  (N^2-N)/2  | <=3(N^2-N)/2 |   +    |   -    |   -    |
- Insertion       |  O(N^2) |   O(1)  | <=(N^2-N)/2 | <=3(N^2-N)/2 |   +    |   +    |   +    |
- InsertionBinary |  O(N^2) |   O(1)  | <=NlogN     | <=(N^2+3N)/2 |   +    |   +    |   +    |
- Shell           |~O(N^1.5)|   O(1)  |     -       |      -       |   -    |   -(+) |   -    |
- Selection       |  O(N^2) |   O(1)  |  (N^2-N)/2  |      N       |   -    |   -    |   -    |
- Heap            | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
- QuickSort       | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
- MergeSort       | O(NlogN)|O(N+logN)|     -       |      -       |   +    |   -    |   -(+) |
+ ok Bubble         |  O(N^2) |   O(1)  |  (N^2-N)/2  | <=3(N^2-N)/2 |   +    |   -    |   -    |
+ ok Insertion       |  O(N^2) |   O(1)  | <=(N^2-N)/2 | <=3(N^2-N)/2 |   +    |   +    |   +    |
+ ok InsertionBinary |  O(N^2) |   O(1)  | <=NlogN     | <=(N^2+3N)/2 |   +    |   +    |   +    |
+ ok Shell           |~O(N^1.5)|   O(1)  |     -       |      -       |   -    |   -(+) |   -    |
+ ok Selection       |  O(N^2) |   O(1)  |  (N^2-N)/2  |      N       |   -    |   -    |   -    |
+ ok Heap            | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
+ ok QuickSort       | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
+ ok MergeSort       | O(NlogN)|O(N+logN)|     -       |      -       |   +    |   -    |   -(+) |
 
 
       |      Bubble                    |      Insertion                 |     InsertionShift             |     InsertionBinarySearch      |     Shell                      |     Selection                     |     Heap                          |

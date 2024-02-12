@@ -1,20 +1,8 @@
-import random
+from ISort import ISort
 
 
-class Sort():
-    def __init__(self, array):
-        self.array = array
-        self.N = len(array)
-        self.cmp = 0
-        self.asg = 0
-
-    def Bubble(self):
-        for i in range(1, self.N):
-            for j in range(self.N - i):
-                if self.more(j, j + 1):
-                    self.swap(j, j + 1)
-
-    def Insertion(self):
+class InsertionSort(ISort):
+    def sort(self, left, right):
         """
         swaps a target element until its place is found in the sorted part and inserts it there
         :return:
@@ -25,7 +13,9 @@ class Sort():
                 self.swap(j, j + 1)
                 j -= 1
 
-    def InsertionShift(self):
+
+class InsertionSortShift(ISort):
+    def sort(self, left, right):
         """
         instead of swaping a target element n times (where n is distance to its place),
         InsertionShift stores the element to some variable and shifts n-1 elements before
@@ -45,7 +35,9 @@ class Sort():
             self.array[j + 1] = k
             self.asg += 1
 
-    def InsertionBinarySearch(self):
+
+class InsertionSortBinarySearch(ISort):
+    def sort(self, left, right):
         """
         instead of swaping a target element n times (where n is distance to its place),
         InsertionShift stores the element to some variable and shifts n-1 elements before
@@ -96,53 +88,6 @@ class Sort():
         else:
             return self.binarySearchRec(k, left, midpoint - 1)
 
-    def Shell(self):
-        """
-        It's easier to read its description on wikipedia (https://en.wikipedia.org/wiki/Shellsort),
-        but basically it starts by sorting sets of elements that are located far from each other
-        using Buble or Insertion sort, and then progressively reduces the gap.
-
-        :return:
-        """
-        gap = self.N // 2
-        while gap > 0:
-            for i in range(gap, self.N):
-                j = i
-                while j >= gap and self.more(j - gap, j):
-                    self.swap(j, j - gap)
-                    j -= gap
-            gap //= 2
-
-    def Selection(self):
-        for i in range(1, self.N):
-            x = self.findMax(self.N - i + 1)
-            self.swap(x, self.N - i)
-
-    def findMax(self, size):
-        x = 0
-        for i in range(size):
-            self.cmp += 1
-            if self.array[i] > self.array[x]:
-                x = i
-        return x
-
-    def swap(self, i, j):
-        self.asg += 3
-        x = self.array[i]
-        self.array[i] = self.array[j]
-        self.array[j] = x
-
-    def more(self, i, j):
-        self.cmp += 1
-        return self.array[i] > self.array[j]
-
-    def moreK(self, i, k):
-        self.cmp += 1
-        return self.array[i] > k
-
-    def toString(self):
-        return f'N:  {self.N} \ncmp: {self.cmp} \nasg: {self.asg}'
-
 
 if __name__ == '__main__':
     import random
@@ -161,10 +106,9 @@ if __name__ == '__main__':
     r = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
     s = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    sort = Sort(create_array(100000))
-    #print(sort.array)
+    sort = InsertionSortBinarySearch(create_array(100))
     start_time = time.time() * 1000.
-    sort.Selection()
+    sort.sort(0, sort.N - 1)
     print(f'time spent - {round(time.time() * 1000. - start_time)} ms')
-    #print(sort.array)
+    print(sort.array)
     print(sort.toString())
