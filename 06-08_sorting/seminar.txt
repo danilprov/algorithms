@@ -6,16 +6,18 @@ St - Stability (equal elements preserve their initial order)
 Ad - Adaptivity (presorted array takes less time to be sorted)
 On - Online (if array can be presented as a stream of data and be sorted in online fashion)
 
-   Alg           |    O    |    M    |     ><      |    <=>       |   St   |   Ad   |   On   |
+   Alg           |    O      |    M    |     ><      |    <=>       |   St   |   Ad   |   On   |
  -------------------------------------------------------------------------------------------------
- ok Bubble         |  O(N^2) |   O(1)  |  (N^2-N)/2  | <=3(N^2-N)/2 |   +    |   -    |   -    |
- ok Insertion       |  O(N^2) |   O(1)  | <=(N^2-N)/2 | <=3(N^2-N)/2 |   +    |   +    |   +    |
- ok InsertionBinary |  O(N^2) |   O(1)  | <=NlogN     | <=(N^2+3N)/2 |   +    |   +    |   +    |
- ok Shell           |~O(N^1.5)|   O(1)  |     -       |      -       |   -    |   -(+) |   -    |
- ok Selection       |  O(N^2) |   O(1)  |  (N^2-N)/2  |      N       |   -    |   -    |   -    |
- ok Heap            | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
- ok QuickSort       | O(NlogN)| O(logN) |     -       |      -       |   -    |   -    |   -    |
- ok MergeSort       | O(NlogN)|O(N+logN)|     -       |      -       |   +    |   -    |   -(+) |
+ Bubble          |  O(N^2)    |   O(1)  |  (N^2-N)/2  | <=3(N^2-N)/2 |   +    |   -    |   -    |
+ Insertion       |  O(N^2)   |   O(1)  | <=(N^2-N)/2 | <=3(N^2-N)/2 |   +    |   +    |   +    |
+ InsertionBinary |  O(N^2)   |   O(1)  | <=NlogN     | <=(N^2+3N)/2 |   +    |   +    |   +    |
+ Shell           |~O(N^1.5)  |   O(1)  |     -       |      -       |   -    |   -(+) |   -    |
+ Selection       |  O(N^2)   |   O(1)  |  (N^2-N)/2  |      N       |   -    |   -    |   -    |
+ Heap            | O(NlogN)  | O(logN) |     -       |      -       |   -    |   -    |   -    |
+ QuickSort       | O(NlogN)  | O(logN) |     -       |      -       |   -    |   -    |   -    |
+ MergeSort       | O(NlogN)  |O(N+logN)|     -       |      -       |   +    |   -    |   -(+) |
+ BucketSort      |O(N)-O(N^2)|   O(N)  |     -       |      -       |   +    |   -    |   -    |
+ CountingSort    |O(N)-O(N^2)|   O(N)  |     -       |      -       |   +    |   -    |   -    |
 
 
       |      Bubble                    |      Insertion                 |     InsertionShift             |     InsertionBinarySearch      |     Shell                      |     Selection                     |     Heap                          |
