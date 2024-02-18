@@ -12,14 +12,20 @@ class LinkedList():
         self.length = 0
         self.head = first_node
 
-    def add_correct_place(self, node):
+    def add_correct_place(self, node_to_place):
         current_node = self.head
-        while current_node.next and (node.value >= current_node.value) and (
-                node.value < current_node.next.value):
+        if node_to_place.value < self.head.value:
+            self.head = node_to_place
+            self.head.next = current_node
+            return
+        while current_node.next is not None:
+            if node_to_place.value < current_node.next.value:
+                node_to_place.next = current_node.next
+                current_node.next = node_to_place.next
+                break
             current_node = current_node.next
 
-        node.next = current_node.next
-        current_node.next = node
+        current_node.next = node_to_place
 
     def unpack_list(self):
         res = []
@@ -36,7 +42,7 @@ class BucketSort(ISort):
         super().__init__(array)
         self.bucket = None
 
-    def sort(self, left, right):
+    def sort(self):
         max_value = self.find_max()
         self.bucket = [LinkedList()] * self.N
 
@@ -79,13 +85,12 @@ if __name__ == '__main__':
             random.shuffle(array)
             return array
 
-    a = [5, 3, 7, 4, 2, 9, 1, 0, 6, 8]
+    a = [737, 740, 738]#[5, 3, 7, 4, 2, 9, 1, 0, 6, 8]
     r = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
     s = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    sort = BucketSort(create_array(100))
+    sort = BucketSort(a)
     start_time = time.time() * 1000.
-    sort.sort(0, sort.N - 1)
+    sort.sort()
     print(f'time spent - {round(time.time() * 1000. - start_time)} ms')
     print(sort.array)
-    print(sort.toString())

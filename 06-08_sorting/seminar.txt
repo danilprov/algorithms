@@ -16,9 +16,10 @@ On - Online (if array can be presented as a stream of data and be sorted in onli
  Heap            | O(NlogN)  | O(logN) |     -       |      -       |   -    |   -    |   -    |
  QuickSort       | O(NlogN)  | O(logN) |     -       |      -       |   -    |   -    |   -    |
  MergeSort       | O(NlogN)  |O(N+logN)|     -       |      -       |   +    |   -    |   -(+) |
- BucketSort      |O(N)-O(N^2)|   O(N)  |     -       |      -       |   +    |   -    |   -    |
- CountingSort    |O(N)-O(N^2)|   O(N)  |     -       |      -       |   +    |   -    |   -    |
-
+ BucketSort      |O(N)-O(N^2)| O(N+k)  |     -       |      -       |   +    |   -    |   -    |
+ CountingSort    |  O(N+k)   | O(N+k)  |     -       |      -       |   +    |   -    |   -    |
+ RasixSort       |  O(dN)    |  O(N)   |     -       |      -       |   +    |   -    |   -    |
+k - is number of unique values
 
       |      Bubble                    |      Insertion                 |     InsertionShift             |     InsertionBinarySearch      |     Shell                      |     Selection                     |     Heap                          |
 N     |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000  |   10000  |   100000   |  1000   |   10000    |   100000   |  1000   |   10000    |   100000   |
