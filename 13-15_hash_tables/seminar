@@ -1,0 +1,36 @@
+key     getHashCode()    hash()   rehashing
+        a0 + ... + aN    x % 5    x % 10
+------|---------------|---------|-------
+dog    100+111+103=314    4         4
+god    103+111+100=314    4         4
+dot    100+111+116=327    2         7
+mod    109+111+100=320    0         0
+moi    109+111+105=325    0         5
+
+getHashCode() - for now it is just a mapping from every letter to a 3 digit number (from the web)
+
+a['dog'] = v1
+a['god'] = v2
+a['dot'] = v3
+a['mod'] = v4
+a['moi'] = v5
+
+hashing - in case of collision add to the beginning of linked list
+0 ---> ('moi', v5, -)--> ('mod', v4, .)
+1
+2 ---> ('dot', v3, .)
+3
+4 ---> ('god', v2, -)--> ('dog', v1, .)
+
+
+rehashing - in case of collision add to the end of linked list
+0 ---> ('mod', v4, .)
+1
+2
+3
+4 ---> ('god', v2, -)--> ('dog', v1, .)
+5 ---> ('moi', v5, -)
+6
+7 ---> ('dot', v3, .)
+8
+9

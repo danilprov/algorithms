@@ -1,11 +1,14 @@
-class Node:
+from ITree import ITree
+
+
+class _Node:
     def __init__(self, key, left=None, right=None):
         self.key = key
         self.left = left
         self.right = right
 
 
-class AVLTree:
+class AVLTree(ITree):
     def __init__(self, root=None):
         if root is None:
             self.height = 0
@@ -13,7 +16,8 @@ class AVLTree:
             self.height = self._get_node_height(root)
         self.root = root
 
-    def insert(self, key):
+    def insert(self, element):
+        key = element
         self.root = self._insert(self.root, key)
 
     def remove(self, key):
@@ -79,7 +83,7 @@ class AVLTree:
 
     def _insert(self, node, key):
         if node is None:
-            return Node(key)
+            return _Node(key)
 
         if key > node.key:
             node.right = self._insert(node.right, key)
